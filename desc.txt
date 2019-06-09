@@ -11,3 +11,4 @@ Exchange-helper
     |─── page1.py  (first  window, daily & historical exchange rates)
     |─── page2.py  (second window, currency calculator)
     |─── page3.py  (third  window, subscription for notification)
+    |─── send_mail.py
