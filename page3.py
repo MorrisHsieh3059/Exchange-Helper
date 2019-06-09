@@ -43,16 +43,17 @@ class Page3(tk.Frame):
 		self.firstpart2.grid(row = 0, column = 1, columnspan = 2, sticky = tk.W)
 		self.firstpart3.grid(row = 0, column = 3, columnspan = 1, sticky = tk.W)
 		self.firstpart4.grid(row = 1, column = 0, columnspan = 1, sticky = tk.W)
-
+		
 		#設定第二部分：輸入目標幣別，並設定相關位置
 		self.secondpart1 = tk.Label(self, text = "目標幣別：", height = 1, width = 15, font = f1)
-		self.secondpart2 = tt.Combobox(self,  values = [" 美金 (USD) ", " 港幣 (HKD) ", " 英鎊 (GBP) ",
+		self.secondpart2 = tt.Combobox(self,  values = [" 請選擇目標幣別", " 美金 (USD) ", " 港幣 (HKD) ", " 英鎊 (GBP) ",
 														" 澳幣 (AUD) ", " 加拿大幣 (CAD) ", " 新加坡幣 (SGD) ",
 														" 瑞士法郎 (CHF) ", " 日圓 (JPY) ", " 南非幣 (ZAR) ",
 														" 瑞典幣 (SEK) ", " 紐元 (NZD) ", " 泰幣 (THB) ",
 														" 菲國比索 (PHP) ", " 印尼幣 (IDR) ", " 歐元 (EUR) ",
 														" 韓元 (KRW) ", " 越南盾 (VND) ", " 馬來幣 (MYR) ",
-														" 人民幣 (CNY) "], height = 10, width = 40, font = f1)
+														" 人民幣 (CNY) " ], state = "readonly", height = 10, width = 40, font = f1)		
+		self.secondpart2.current(0)
 		self.secondpart3 = tk.Label(self, height = 1, width = 15, font = f1) #排版用
 		self.secondpart1.grid(row = 2, column = 0, columnspan = 1)
 		self.secondpart2.grid(row = 2, column = 1, columnspan = 2)
@@ -104,7 +105,7 @@ class Page3(tk.Frame):
 
 		#設定第七部分：送出資料及取得驗證信，並設定相關位置
 		self.seventhpart1 = tk.Button(self, text = "確認送出", command = self.clickseventhpart, height = 1, width = 22, font = f1, bg = "gold")
-		self.seventhpart1.grid(row = 11, column = 0, columnspan = 4)
+		self.seventhpart1.grid(row = 11, column = 0, columnspan = 4)	
 
 		#設定第八部分：說明文字，並設定相關位置
 		self.eighthpart1 = tk.Label(self, text = "請去信箱確認認證信，如5分鐘內未收到請重新輸入", font = f1)
@@ -189,7 +190,7 @@ class Page3(tk.Frame):
 									tkinter.messagebox.showinfo(title='Ooooooops!', message='我只看得懂阿拉伯數字啦！')
 									return None
 							else :
-								try:
+								try: 
 									input_number = float(self.sixthpart2.get("1.0", tk.END))
 									input_number = float(self.fifthpart2.get("1.0", tk.END))
 								except:
@@ -203,7 +204,7 @@ class Page3(tk.Frame):
 
 		#將使用者選取之目標幣別進行轉換，因第一個及最後一個字會為空白或分隔，因而取第二個至倒數第二個字
 		name_currency = mail_word_currency[1:len(mail_word_currency)-1]
-
+		
 		#將使用者選取之匯率種類進行轉換
 		name_type_original = []
 
@@ -255,12 +256,12 @@ class Page3(tk.Frame):
 		msg['From'] = fromaddr
 		msg['To'] = toaddr
 
-		body = MIMEText(u"Hello!\n\n收到此封信表示我們已收到您輸入的資訊！"
+		body = MIMEText(u"Hello!\n\n收到此封信表示我們已收到您輸入的資訊！" 
 			+ "\n\n\t幣別：" + name_currency
 			+ "\n\n\t匯率種類：" + str(name_type)
-			+ "\n\n\t希望價格低於：" + str(name_lowest)
-			+ "\n\n\t希望價格高於：" + str(name_highest)
-			+ "\n\n希望近期就能出現您希望的匯率～\n\n製作團隊敬上", 'plain', 'utf-8')
+			+ "\n\n\t希望價格低於：" + str(name_lowest) 
+			+ "\n\n\t希望價格高於：" + str(name_highest) 
+			+ "\n\n希望近期就能出現您希望的匯率～\n\n製作團隊敬上", 'plain', 'utf-8') 
 		msg.attach(body)
 
 		try:
@@ -289,7 +290,8 @@ class Page3(tk.Frame):
 		for d in data:
 			if d == data[-1] :
 				fileObject.write(d)
-			else :
+			else :	
 				fileObject.write(d)
 				fileObject.write(',')
 		fileObject.close()
+
